@@ -1,4 +1,4 @@
-# babel-plugin-react-intl
+# babel-plugin-react-intl-advanced
 
 Extracts string messages for translation from modules that use [React Intl][].
 ## Dependencies

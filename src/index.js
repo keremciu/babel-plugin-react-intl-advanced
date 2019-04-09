@@ -26,7 +26,7 @@ const MESSAGES  = Symbol('ReactIntlMessages');
 
 export default function ({types: t}) {
     function getModuleSourceName(opts) {
-        return opts.moduleSourceName || 'react-intl';
+        return opts.moduleSourceName || 'react-intl-advanced';
     }
 
     function evaluatePath(path) {
@@ -213,7 +213,7 @@ export default function ({types: t}) {
             const basename = p.basename(filename, p.extname(filename));
             const messages = file.get(MESSAGES);
             const descriptors = [...messages.values()];
-            file.metadata['react-intl'] = {messages: descriptors};
+            file.metadata['react-intl-advanced'] = {messages: descriptors};
 
             if (opts.messagesDir && descriptors.length > 0) {
                 // Make sure the relative path is "absolute" before
