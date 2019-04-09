@@ -16,6 +16,7 @@ const COMPONENT_NAMES = [
 
 const FUNCTION_NAMES = [
     'defineMessages',
+    'formatMessage',
 ];
 
 const DESCRIPTOR_PROPS = new Set(['id', 'description', 'defaultMessage']);
@@ -166,6 +167,28 @@ export default function ({types: t}) {
         }
 
         return importedNames.some((name) => path.referencesImport(mod, name));
+    }
+
+    function isFormatMessageCall(path) {
+        if (t.isMemberExpression(path)) {
+            const property = path.get('property');
+
+            if (t.isIdentifier(property) && property.node.name === 'formatMessage') {
+                const object = path.get('object');
+                const objectProperty = object.get('property');
+                if (t.isIdentifier(objectProperty)) {
+                    if (objectProperty.node.name === 'intl') {
+                        // return true;
+                    }
+                }
+                return true;
+                // throw path.buildCodeFrameError(
+                //     `test ${objectProperty.node}`
+                // );
+            }
+        }
+
+        return false;
     }
 
     function tagAsExtracted(path) {
@@ -334,6 +357,15 @@ export default function ({types: t}) {
                     messagesObj.get('properties')
                         .map((prop) => prop.get('value'))
                         .forEach(processMessageObject);
+
+                    throw path.buildCodeFrameError(
+                        messagesObj
+                    );
+                }
+
+                if (isFormatMessageCall(callee)) {
+                    const messagesObj = path.get('arguments')[0];
+                    processMessageObject(messagesObj);
                 }
             },
         },
