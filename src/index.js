@@ -336,7 +336,9 @@ export default function({ types: t }) {
 					tagAsExtracted(messageObj);
 				}
 
-				const additionalFunctionNames = opts.additionalFunctionNames || ["formatMessage"];
+				const additionalFunctionNames = state.opts.additionalFunctionNames || [
+					"formatMessage"
+				];
 				const additionalFunctionNameMatches = Object.keys(additionalFunctionNames).some(
 					moduleName =>
 						referencesImport(callee, moduleName, additionalFunctionNames[moduleName])
