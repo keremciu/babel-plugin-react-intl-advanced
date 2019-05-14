@@ -14,6 +14,14 @@
     "intl-messageformat-parser": "^1.5.1",
     "mkdirp": "^0.5.1"
   },
+  "prettier": {
+		"tabWidth": 2,
+		"parser": "flow",
+		"semi": true,
+		"useTabs": true,
+		"jsxBracketSameLine": true,
+		"printWidth": 90
+	},
   "devDependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.2.2",

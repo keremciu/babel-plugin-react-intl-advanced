@@ -1858,10 +1858,10 @@ inquirer@^6.1.0:
     strip-ansi "^5.0.0"
     through "^2.3.6"
 
-intl-messageformat-parser@^1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/intl-messageformat-parser/-/intl-messageformat-parser-1.4.0.tgz#b43d45a97468cadbe44331d74bb1e8dea44fc075"
-  integrity sha1-tD1FqXRoytvkQzHXS7Ho3qRPwHU=
+intl-messageformat-parser@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/intl-messageformat-parser/-/intl-messageformat-parser-1.5.1.tgz#b15a93dc8d4ba77ff60fd0443ed4794403b1e132"
+  integrity sha512-G9/w2k2MRG2OvzVc/zOfBQbZJT590TiUI6/4wUshvzV1Q9rA5DDC2mWFz5UtiWT4Z7U3nunaba3FWri77KXCnA==
 
 invariant@^2.2.2:
   version "2.2.4"
