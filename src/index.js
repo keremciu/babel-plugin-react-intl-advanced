@@ -173,15 +173,14 @@ export default function ({types: t}) {
         if (t.isMemberExpression(path)) {
             const property = path.get('property');
 
-            if (t.isIdentifier(property) && property.node.name === 'formatMessage') {
+            if (t.isIdentifier(property) && property.node.name === 'intl') {
                 const object = path.get('object');
                 const objectProperty = object.get('property');
                 if (t.isIdentifier(objectProperty)) {
-                    if (objectProperty.node.name === 'intl') {
-                        // return true;
+                    if (objectProperty.node.name === 'formatMessage') {
+                        return true;
                     }
                 }
-                return true;
                 // throw path.buildCodeFrameError(
                 //     `test ${objectProperty.node}`
                 // );
@@ -255,6 +254,12 @@ export default function ({types: t}) {
 
                     return;
                 }
+                
+                const additionalComponents = opts.additionalComponentNames || ["formatMessage"];
+                const additionalComponentNameMatches = Object.keys(additionalComponents).some(
+                    (moduleName) =>
+                        referencesImport(name, moduleName, additionalComponents[moduleName])
+                );
 
                 if (referencesImport(name, moduleSourceName, COMPONENT_NAMES)) {
                     const attributes = path.get('attributes')
