@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-react-intl-advanced",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "description": "Extracts string messages for translation from modules that use React Intl. [copy]",
   "repository": {
     "type": "git",
