@@ -163,11 +163,11 @@ export default function({ types: t }) {
 		if (t.isMemberExpression(path)) {
 			const property = path.get("property");
 
-			if (t.isIdentifier(property) && property.node.name === "intl") {
+			if (t.isIdentifier(property) && property.node.name === "formatMessage") {
 				const object = path.get("object");
 				const objectProperty = object.get("property");
 				if (t.isIdentifier(objectProperty)) {
-					if (objectProperty.node.name === "formatMessage") {
+					if (objectProperty.node.name === "intl") {
 						return true;
 					}
 				}
@@ -242,7 +242,9 @@ export default function({ types: t }) {
 					return;
 				}
 
-				const additionalComponents = opts.additionalComponentNames || ["formatMessage"];
+				const additionalComponents = opts.additionalComponentNames || {
+					intl: ["formatMessage"]
+				};
 				const additionalComponentNameMatches = Object.keys(additionalComponents).some(
 					moduleName =>
 						referencesImport(name, moduleName, additionalComponents[moduleName])
@@ -336,9 +338,9 @@ export default function({ types: t }) {
 					tagAsExtracted(messageObj);
 				}
 
-				const additionalFunctionNames = state.opts.additionalFunctionNames || [
-					"formatMessage"
-				];
+				const additionalFunctionNames = state.opts.additionalFunctionNames || {
+					intl: ["formatMessage"]
+				};
 				const additionalFunctionNameMatches = Object.keys(additionalFunctionNames).some(
 					moduleName =>
 						referencesImport(callee, moduleName, additionalFunctionNames[moduleName])
