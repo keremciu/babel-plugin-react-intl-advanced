@@ -163,7 +163,9 @@ export default function({ types: t }) {
 		if (t.isMemberExpression(path)) {
 			const property = path.get("property");
 
-			if (t.isIdentifier(property) && property.node.name === "formatMessage") {
+			const formatMessageKeys = ["formatMessage", "formatHTMLMessage"];
+
+			if (t.isIdentifier(property) && formatMessageKeys.includes(property.node.name)) {
 				const object = path.get("object");
 				if (t.isIdentifier(object)) {
 					if (object.node.name === "intl") {
